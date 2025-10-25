@@ -90,7 +90,8 @@ if ENV == 'Huggingface':
         # print('install custom')
         # os.system(f"cd /home/user/app/hy3dpaint/custom_rasterizer && {pythonpath} -m pip install -e .")
         # os.system(f"cd /home/user/app/hy3dpaint/packages/custom_rasterizer && pip install -e .")
-        subprocess.run(shlex.split("pip install custom_rasterizer-0.1-cp310-cp310-linux_x86_64.whl"), check=True)
+        pip_home = os.environ["PIP_HOME"]
+        subprocess.run(shlex.split(pip_home+" install custom_rasterizer-0.1-cp310-cp310-linux_x86_64.whl"), check=True)
 
         print("cd /home/user/app/hy3dpaint/differentiable_renderer/ && bash compile_mesh_painter.sh")
         os.system("cd /home/user/app/hy3dpaint/DifferentiableRenderer && bash compile_mesh_painter.sh")
@@ -917,11 +918,12 @@ if __name__ == '__main__':
         torch.cuda.empty_cache()
         
     demo = build_app()
-    app = gr.mount_gradio_app(app, demo, path="/")
+    demo.launch(share=True)
+    # app = gr.mount_gradio_app(app, demo, path="/")
 
-    if ENV == 'Huggingface':
-        # for Zerogpu
-        from spaces import zero
-        zero.startup()
+    # if ENV == 'Huggingface':
+    #     # for Zerogpu
+    #     from spaces import zero
+    #     zero.startup()
 
-    uvicorn.run(app, host=args.host, port=args.port)
+    # uvicorn.run(app, host=args.host, port=args.port)
