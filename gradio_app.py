@@ -92,8 +92,8 @@ if ENV == 'Huggingface':
         # os.system(f"cd /home/user/app/hy3dpaint/packages/custom_rasterizer && pip install -e .")
         pip_home = os.environ["PIP_HOME"]
         subprocess.run(shlex.split(pip_home+" install custom_rasterizer-0.1-cp310-cp310-linux_x86_64.whl"), check=True)
-
-        print("cd /home/user/app/hy3dpaint/differentiable_renderer/ && bash compile_mesh_painter.sh")
+        pip_home = os.environ["DR_DIR"]
+        print(f"cd {pip_home} && bash compile_mesh_painter.sh")
         os.system("cd /home/user/app/hy3dpaint/DifferentiableRenderer && bash compile_mesh_painter.sh")
         # print("wget https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0/RealESRGAN_x4plus.pth -P /home/user/app/hy3dpaint/ckpt")
         # os.system("wget https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0/RealESRGAN_x4plus.pth -P /home/user/app/hy3dpaint/ckpt")
