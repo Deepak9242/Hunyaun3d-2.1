@@ -91,7 +91,7 @@ if ENV == 'Huggingface':
         # os.system(f"cd /home/user/app/hy3dpaint/custom_rasterizer && {pythonpath} -m pip install -e .")
         # os.system(f"cd /home/user/app/hy3dpaint/packages/custom_rasterizer && pip install -e .")
         pip_home = os.environ["PIP_HOME"]
-        subprocess.run(shlex.split(pip_home+" install custom_rasterizer-0.1-cp310-cp310-linux_x86_64.whl"), check=True)
+        #subprocess.run(shlex.split(pip_home+" install custom_rasterizer-0.1-cp310-cp310-linux_x86_64.whl"), check=True)
         pip_home = os.environ["DR_DIR"]
         print(f"cd {pip_home} && bash compile_mesh_painter.sh")
         os.system("cd /home/user/app/hy3dpaint/DifferentiableRenderer && bash compile_mesh_painter.sh")
